@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kecskeméti Városi Kaland</title>
+<style>
+body{font-family:Arial;background:#eef2f7;margin:0;padding:0;}
+.container{max-width:720px;margin:auto;padding:20px;}
+.card{background:white;border-radius:12px;padding:20px;margin-top:15px;box-shadow:0 4px 12px rgba(0,0,0,0.1);} 
+.hidden{display:none;} img{width:100%;border-radius:10px;margin-bottom:15px;} 
+button{width:100%;padding:12px;border:none;border-radius:8px;background:#0078d4;color:white;font-size:16px;margin-top:10px;} 
+.start{background:green}
+input{width:100%;padding:10px;margin-top:8px;border-radius:8px;border:1px solid #ccc;}
+.feedback{margin-top:10px;font-weight:bold;}
+.progress{text-align:center;margin-top:10px;font-weight:bold;}
+.letter{font-size:18px;margin-top:5px;color:#0078d4;font-weight:bold;}
+.options{margin-top:10px;}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>📍 Kecskeméti Városi Kaland</h1>
+
+<div class="card" id="intro">
+<p>Üdvözlünk a kecskeméti városi kalandban!</p>
+<p>Ebben a játékban Kecskemét belvárosát fedezitek fel egy izgalmas küldetés során. Több állomást kell végigjárnotok, és minden helyszínen egy feladat vár rátok.</p>
+<p>Figyeljetek a részletekre, használjátok a megfigyelőképességeteket, és dolgozzatok együtt!</p>
+<p>⚠️ Fontos: csak akkor léphettek tovább a következő állomásra, ha helyesen válaszoltok!</p>
+<p>🎯 Minden helyes válasz után kaptok egy betűt. Ezekből a végén összeáll a titkos szó.</p>
+<button class="start" onclick="startGame()">Kezdés</button>
+</div>
+
+<div class="progress hidden" id="progress">1 / 10</div>
+
+<div class="card hidden" id="t1">
+<img src="Katona József Könyvtár.jpg">
+<h2>1. állomás</h2>
+<p>A Katona József Könyvtár előtt található egy könyvet ábrázoló szobor. Ha hátulról a borítók közé néztek, a szemközti templom egy szobrát láthatjátok. Ez a szobor egy utcán található táblát néz. Nézzétek meg a tábla hátulját! Melyik híres magyar író nevét találjátok ott?</p>
+<input id="a1">
+<button onclick="c1()">Ellenőrzés</button>
+<div class="feedback" id="f1"></div><div class="letter" id="l1"></div>
+</div>
+
+<div class="card hidden" id="t2">
+<img src="Luca szobor.jpg">
+<h2>2. állomás</h2>
+<p>Luca szobránál jártok. A hely tele van különböző állatokkal. Az alábbiak közül mely állatok NINCSENEK a szobor körül? kígyó, gyík, csiga, teknős, holló, mókus, hangya, rák, sün</p>
+<input id="a2a" placeholder="1. állat">
+<input id="a2b" placeholder="2. állat">
+<button onclick="c2()">Ellenőrzés</button>
+<div class="feedback" id="f2"></div><div class="letter" id="l2"></div>
+</div>
+
+<div class="card hidden" id="t3">
+<img src="címerdomb.jpg">
+<h2>3. állomás</h2>
+<p>A város főterén található a 0 km kő (más néven: Címerdomb), amely a város címerállatát mutatja. Ez a címer egy híres 18. századi költőnk szülőhelyével van egy vonalban. Ki ez a költő?</p>
+<input id="a3">
+<button onclick="c3()">Ellenőrzés</button>
+<div class="feedback" id="f3"></div><div class="letter" id="l3"></div>
+</div>
+
+<div class="card hidden" id="t4">
+<img src="Nagytemplom.jpg">
+<h2>4. állomás</h2>
+<p>A Nagytemplom mögött található Szent István szobortól induljatok el délkeleti irányba, és tegyetek meg körülbelül 25 lépést! Egy kör alakú márvány emléklaphoz fogtok érni. Álljatok rá, és tapsoljatok hármat! Mi történik?</p>
+<div class="options">
+<label><input type="radio" name="r4" value="a"> a) csipogást hallotok</label><br>
+<label><input type="radio" name="r4" value="b"> b) vízsugár lövell rátok</label><br>
+<label><input type="radio" name="r4" value="c"> c) furcsán néznek rátok az emberek</label><br>
+<label><input type="radio" name="r4" value="d"> d) feloltódik egy kis lámpa</label>
+</div>
+<button onclick="c4()">Ellenőrzés</button>
+<div class="feedback" id="f4"></div><div class="letter" id="l4"></div>
+</div>
+
+<div class="card hidden" id="t5">
+<img src="városháza.jpg">
+<h2>5. állomás</h2>
+<p>A Városházánál két költőnk (írónk) emlékhelye is megtalálható. Írjatok 1–1 művet mindkét szerzőtől, amelyet ezek az emlékhelyek megemlítenek!</p>
+<input id="a5a" placeholder="1. mű">
+<input id="a5b" placeholder="2. mű">
+<button onclick="c5()">Ellenőrzés</button>
+<div class="feedback" id="f5"></div><div class="letter" id="l5"></div>
+</div>
+
+<div class="card hidden" id="t6">
+<img src="Trianon-emlékmű.jpg">
+<h2>6. állomás</h2>
+<p>Menjetek el a Trianon-emlékműhöz! Álljatok rá a „Hírös város” táblájára, majd arra a városra, amely 380 km-re van tőle! Kössétek össze a két pontot egy képzeletbeli vonallal, majd húzzátok tovább ezt a vonalat! Ha jó irányba tartotok, egy emléktáblához értek. Hányadik század végét említi a tábla? A választ arab számmal adjátok meg!</p>
+<input id="a6">
+<button onclick="c6()">Ellenőrzés</button>
+<div class="feedback" id="f6"></div><div class="letter" id="l6"></div>
+</div>
+
+<div class="card hidden" id="t7">
+<img src="Katona József Színház.jpg">
+<h2>7. állomás</h2>
+<p>Járjátok körbe a Katona József Színházat! Találtok ott egy helyet, ahol egy kis fülkében megpihenhettek. Ha eleget töprengtek ott, rájöhettek: Ki van a színházban?</p>
+<input id="a7">
+<button onclick="c7()">Ellenőrzés</button>
+<div class="feedback" id="f7"></div><div class="letter" id="l7"></div>
+</div>
+
+<div class="card hidden" id="t8">
+<img src="Kéttemplom köz.jpg">
+<h2>8. állomás</h2>
+<p>A Kéttemplom közben található a Művészetek kútja. Az alábbiak közül melyik személy NEM szerepel rajta?</p>
+<div class="options">
+<label><input type="radio" name="r8" value="a"> Leonardo da Vinci</label><br>
+<label><input type="radio" name="r8" value="b"> Michelangelo</label><br>
+<label><input type="radio" name="r8" value="c"> Tiziano</label>
+</div>
+<button onclick="c8()">Ellenőrzés</button>
+<div class="feedback" id="f8"></div><div class="letter" id="l8"></div>
+</div>
+
+<div class="card hidden" id="t9">
+<img src="Református templom.jpg">
+<h2>9. állomás</h2>
+<p>A Református templom mellett álljatok úgy, hogy Kodály Zoltán nézzen le rátok! Ezután forduljatok meg, és nézzetek körül! Hány órát tudtok megszámolni?</p>
+<input id="a9">
+<button onclick="c9()">Ellenőrzés</button>
+<div class="feedback" id="f9"></div><div class="letter" id="l9"></div>
+</div>
+
+<div class="card hidden" id="t10">
+<img src="Kelemen László Színház.jpg">
+<h2>10. állomás</h2>
+<p>A Kelemen László Kamaraszínháznál egy Madách Imre idézetet találtok. Az idézetből egy betű hiányzik. Melyik betű az?</p>
+<input id="a10">
+<button onclick="c10()">Ellenőrzés</button>
+<div class="feedback" id="f10"></div><div class="letter" id="l10"></div>
+</div>
+
+<script>
+const letters = "KATEDRASOK";
+
+function startGame(){document.getElementById('intro').classList.add('hidden');document.getElementById('t1').classList.remove('hidden');document.getElementById('progress').classList.remove('hidden');}
+function next(n){if(n<10){document.getElementById('t'+(n+1)).classList.remove('hidden');document.getElementById('progress').innerText=(n+1)+' / 10';}}
+function give(n){document.getElementById('l'+n).innerText = "Megkaptátok a betűt: " + letters[n-1];}
+function bad(n){document.getElementById('f'+n).innerText = "Nem jó válasz, próbáljátok újra!";}
+
+function c1(){if(a1.value.toLowerCase().includes('jókai')){f1.innerText='Helyes!';give(1);next(1);} else bad(1);} 
+function c2(){let v1=a2a.value.toLowerCase(),v2=a2b.value.toLowerCase(); if((v1.includes('holl')||v2.includes('holl'))&&(v1.includes('hangy')||v2.includes('hangy'))){f2.innerText='Helyes!';give(2);next(2);} else bad(2);} 
+function c3(){if(a3.value.toLowerCase().includes('csokonai')){f3.innerText='Helyes!';give(3);next(3);} else bad(3);} 
+function c4(){let r=document.querySelector("input[name='r4']:checked"); if(r && r.value==='a'){f4.innerText='Helyes!';give(4);next(4);} else bad(4);} 
+function c5(){let v1=a5a.value.toLowerCase(),v2=a5b.value.toLowerCase(); if((v1.includes('bánk')||v2.includes('bánk'))&&(v1.includes('jövendölés')||v2.includes('jövendölés'))){f5.innerText='Helyes!';give(5);next(5);} else bad(5);} 
+function c6(){if(a6.value.trim()==='13'){f6.innerText='Helyes!';give(6);next(6);} else bad(6);} 
+function c7(){if(a7.value.toLowerCase().includes('zen')){f7.innerText='Helyes!';give(7);next(7);} else bad(7);} 
+function c8(){let r=document.querySelector("input[name='r8']:checked"); if(r && r.value==='c'){f8.innerText='Helyes!';give(8);next(8);} else bad(8);} 
+function c9(){if(a9.value.trim()==='3'){f9.innerText='Helyes!';give(9);next(9);} else bad(9);} 
+function c10(){if(a10.value.toLowerCase()==='a'){f10.innerText='🎉 Gratulálunk! Sikeresen teljesítettétek a városi kalandot! A megszerzett betűkből helyesen kiraktátok a titkos szót: KATEDRÁSOK. Reméljük, jól éreztétek magatokat, és sok új érdekességet fedeztetek fel Kecskemét belvárosában!';give(10);} else bad(10);} 
+</script>
+
+</div>
+</body>
+</html>
